@@ -1,14 +1,27 @@
 import type { NextPage } from 'next';
-import { Typography } from '@material-ui/core';
 import Head from 'next/head';
+import TodoList from '../components/index/TodoList';
+import { Task } from '../interfaces/Task';
 
 const Home: NextPage = () => {
+  // TODO: replace with an API call
+  const tasks: Task[] = [
+    {
+      name: 'done task',
+      done: true
+    },
+    {
+      name: 'undone task',
+      done: false
+    }
+  ];
+
   return (
     <>
       <Head>
         <title>To-do List</title>
       </Head>
-      <Typography variant="h1">Hello, world!</Typography>
+      <TodoList tasks={tasks} />
     </>
   );
 };
