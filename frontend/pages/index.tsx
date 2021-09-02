@@ -1,6 +1,6 @@
 import type { NextPage } from 'next';
-import { Typography } from '@material-ui/core';
 import Head from 'next/head';
+import TodoList from '../components/TodoList';
 
 const Home: NextPage = () => {
   return (
@@ -8,7 +8,7 @@ const Home: NextPage = () => {
       <Head>
         <title>To-do List</title>
       </Head>
-      <Typography variant="h1">Hello, world!</Typography>
+      <TodoList />
     </>
   );
 };
