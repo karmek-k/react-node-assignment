@@ -1,6 +1,7 @@
 import { Paper, Typography } from '@material-ui/core';
 import React from 'react';
 import { makeStyles } from '@material-ui/styles';
+import { Task } from '../../interfaces/Task';
 
 const useStyles = makeStyles({
   listContainer: {
@@ -13,7 +14,11 @@ const useStyles = makeStyles({
   }
 });
 
-const TodoList: React.FC = () => {
+interface Props {
+  tasks: Task[];
+}
+
+const TodoList: React.FC<Props> = ({ tasks }) => {
   const classes = useStyles();
 
   return (
