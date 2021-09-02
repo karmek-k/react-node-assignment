@@ -2,6 +2,7 @@ import { Paper, Typography } from '@material-ui/core';
 import React from 'react';
 import { makeStyles } from '@material-ui/styles';
 import { Task } from '../../interfaces/Task';
+import TaskContainer from './TaskContainer';
 
 const useStyles = makeStyles({
   listContainer: {
@@ -26,6 +27,7 @@ const TodoList: React.FC<Props> = ({ tasks }) => {
       <Typography variant="h3" className={classes.textCentered}>
         To-do List
       </Typography>
+      <TaskContainer tasks={tasks} />
     </Paper>
   );
 };
