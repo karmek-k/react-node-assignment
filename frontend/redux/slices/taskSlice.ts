@@ -18,9 +18,6 @@ export const taskSlice = createSlice({
   name: 'tasks',
   initialState,
   reducers: {
-    clear: state => {
-      state.tasks = [];
-    },
     add: (state, action: PayloadAction<TaskEntry>) => {
       state.tasks.push({
         id: ++state.lastId,
