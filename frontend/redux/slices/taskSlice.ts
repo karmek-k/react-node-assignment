@@ -38,6 +38,15 @@ export const taskSlice = createSlice({
     },
     remove: (state, action: PayloadAction<number>) => {
       state.tasks = state.tasks.filter(task => task.id !== action.payload);
+    },
+    toggleDone: (state, action: PayloadAction<number>) => {
+      const task = state.tasks.find(task => task.id === action.payload);
+
+      if (!task) {
+        return;
+      }
+
+      task.done = !task.done;
     }
   }
 });
