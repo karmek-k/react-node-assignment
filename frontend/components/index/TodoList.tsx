@@ -4,6 +4,8 @@ import { makeStyles } from '@material-ui/styles';
 import TaskContainer from './TaskContainer';
 import TaskForm from './TaskForm';
 import useTasks from '../../hooks/useTasks';
+import TaskPicker from './TaskPicker';
+import useTaskVisibility from '../../hooks/useTaskVisibility';
 
 const useStyles = makeStyles({
   listContainer: {
@@ -18,7 +20,7 @@ const useStyles = makeStyles({
 
 const TodoList: React.FC = () => {
   const classes = useStyles();
-  const tasks = useTasks();
+  const tasks = useTasks(useTaskVisibility());
 
   return (
     <Paper className={classes.listContainer}>
@@ -26,6 +28,7 @@ const TodoList: React.FC = () => {
         To-do List
       </Typography>
       <TaskForm />
+      <TaskPicker />
       {tasks.length > 0 ? (
         <TaskContainer tasks={tasks} />
       ) : (

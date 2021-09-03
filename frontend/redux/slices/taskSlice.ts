@@ -1,34 +1,23 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction, current } from '@reduxjs/toolkit';
+import TaskPickerOption from '../../enums/TaskPickerOption';
 import { Task, TaskEntry } from '../../interfaces/Task';
 
 type InitialState = {
   lastId: number;
   tasks: Task[];
+  visibility: TaskPickerOption;
 };
 
 const initialState: InitialState = {
-  lastId: 2,
-  tasks: [
-    {
-      id: 1,
-      name: 'done task',
-      done: true
-    },
-    {
-      id: 2,
-      name: 'undone task',
-      done: false
-    }
-  ]
+  lastId: 0,
+  tasks: [],
+  visibility: TaskPickerOption.ALL
 };
 
 export const taskSlice = createSlice({
   name: 'tasks',
   initialState,
   reducers: {
-    clear: state => {
-      state.tasks = [];
-    },
     add: (state, action: PayloadAction<TaskEntry>) => {
       state.tasks.push({
         id: ++state.lastId,
@@ -47,6 +36,12 @@ export const taskSlice = createSlice({
       }
 
       task.done = !task.done;
+
+      const doneTasks = current(state.tasks).filter(task => task.done);
+      console.log(doneTasks);
+    },
+    setVisibility: (state, action: PayloadAction<TaskPickerOption>) => {
+      state.visibility = action.payload;
     }
   }
 });
