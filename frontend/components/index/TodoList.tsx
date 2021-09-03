@@ -1,8 +1,8 @@
 import { Paper, Typography } from '@material-ui/core';
 import React from 'react';
 import { makeStyles } from '@material-ui/styles';
-import { Task } from '../../interfaces/Task';
 import TaskContainer from './TaskContainer';
+import { useAppSelector } from '../../hooks/redux';
 
 const useStyles = makeStyles({
   listContainer: {
@@ -15,12 +15,9 @@ const useStyles = makeStyles({
   }
 });
 
-interface Props {
-  tasks: Task[];
-}
-
-const TodoList: React.FC<Props> = ({ tasks }) => {
+const TodoList: React.FC = () => {
   const classes = useStyles();
+  const tasks = useAppSelector(state => state.task.tasks);
 
   return (
     <Paper className={classes.listContainer}>
