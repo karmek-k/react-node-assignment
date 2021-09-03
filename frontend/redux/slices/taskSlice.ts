@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction, current } from '@reduxjs/toolkit';
 import TaskPickerOption from '../../enums/TaskPickerOption';
 import { Task, TaskEntry } from '../../interfaces/Task';
 
@@ -36,6 +36,9 @@ export const taskSlice = createSlice({
       }
 
       task.done = !task.done;
+
+      const doneTasks = current(state.tasks).filter(task => task.done);
+      console.log(doneTasks);
     },
     setVisibility: (state, action: PayloadAction<TaskPickerOption>) => {
       state.visibility = action.payload;
