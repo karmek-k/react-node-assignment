@@ -5,19 +5,19 @@ import {
   FormControlLabel,
   Radio
 } from '@material-ui/core';
-import React, { useState } from 'react';
+import React from 'react';
 import TaskPickerOption from '../../enums/TaskPickerOption';
 import useSetTaskVisibility from '../../hooks/useSetTaskVisibility';
+import useTaskVisibility from '../../hooks/useTaskVisibility';
 
 const TaskPicker = () => {
-  const [option, setOption] = useState<TaskPickerOption>(TaskPickerOption.ALL);
+  const taskVisibility = useTaskVisibility();
   const setTaskVisibility = useSetTaskVisibility();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const optionNumber = Number((e.target as HTMLInputElement).value);
-    setOption(optionNumber as TaskPickerOption);
 
-    setTaskVisibility(option);
+    setTaskVisibility(optionNumber as TaskPickerOption);
   };
 
   return (
@@ -26,7 +26,7 @@ const TaskPicker = () => {
       <RadioGroup
         aria-label="visibility"
         name="visibility"
-        value={option}
+        value={taskVisibility}
         onChange={handleChange}
       >
         <FormControlLabel
