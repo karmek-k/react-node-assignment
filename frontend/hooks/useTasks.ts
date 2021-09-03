@@ -6,8 +6,6 @@ const useTasks = () => {
   const allTasks = useAppSelector(state => state.task.tasks);
   const option = useTaskVisibility();
 
-  console.log(option);
-
   switch (option) {
     case TaskPickerOption.DONE:
       return allTasks.filter(task => task.done);
