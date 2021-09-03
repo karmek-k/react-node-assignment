@@ -5,6 +5,7 @@ import TaskContainer from './TaskContainer';
 import TaskForm from './TaskForm';
 import useTasks from '../../hooks/useTasks';
 import TaskPicker from './TaskPicker';
+import useTaskVisibility from '../../hooks/useTaskVisibility';
 
 const useStyles = makeStyles({
   listContainer: {
@@ -19,7 +20,7 @@ const useStyles = makeStyles({
 
 const TodoList: React.FC = () => {
   const classes = useStyles();
-  const tasks = useTasks();
+  const tasks = useTasks(useTaskVisibility());
 
   return (
     <Paper className={classes.listContainer}>

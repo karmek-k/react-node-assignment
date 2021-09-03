@@ -1,12 +1,10 @@
 import TaskPickerOption from '../enums/TaskPickerOption';
 import { useAppSelector } from './redux';
-import useTaskVisibility from './useTaskVisibility';
 
-const useTasks = () => {
+const useTasks = (visibility?: TaskPickerOption) => {
   const allTasks = useAppSelector(state => state.task.tasks);
-  const option = useTaskVisibility();
 
-  switch (option) {
+  switch (visibility) {
     case TaskPickerOption.DONE:
       return allTasks.filter(task => task.done);
 
