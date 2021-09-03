@@ -1,15 +1,19 @@
 import { Button, TextField } from '@material-ui/core';
 import React, { useState } from 'react';
+import useCreateTask from '../../hooks/useCreateTask';
 
 const TaskForm: React.FC = () => {
   const [taskName, setTaskName] = useState<string>('');
+  const createTask = useCreateTask();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    // TODO: save to the database
-    console.log(taskName);
+    if (!taskName) {
+      return;
+    }
 
+    createTask({ name: taskName });
     setTaskName('');
   };
 
