@@ -10,7 +10,7 @@ const Home: NextPage = () => {
       <Head>
         <title>To-do List</title>
       </Head>
-      <TodoList tasks={[]} />
+      <TodoList />
     </ReduxProvider>
   );
 };

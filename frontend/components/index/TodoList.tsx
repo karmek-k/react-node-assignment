@@ -1,8 +1,9 @@
 import { Paper, Typography } from '@material-ui/core';
 import React from 'react';
 import { makeStyles } from '@material-ui/styles';
-import { Task } from '../../interfaces/Task';
 import TaskContainer from './TaskContainer';
+import TaskForm from './TaskForm';
+import useTasks from '../../hooks/useTasks';
 
 const useStyles = makeStyles({
   listContainer: {
@@ -15,18 +16,16 @@ const useStyles = makeStyles({
   }
 });
 
-interface Props {
-  tasks: Task[];
-}
-
-const TodoList: React.FC<Props> = ({ tasks }) => {
+const TodoList: React.FC = () => {
   const classes = useStyles();
+  const tasks = useTasks();
 
   return (
     <Paper className={classes.listContainer}>
       <Typography variant="h3" className={classes.textCentered}>
         To-do List
       </Typography>
+      <TaskForm />
       <TaskContainer tasks={tasks} />
     </Paper>
   );
