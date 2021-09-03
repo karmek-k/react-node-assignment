@@ -14,7 +14,10 @@ const TaskComponent: React.FC<Props> = ({ task }) => {
 
   return (
     <ListItem>
-      <ListItemText primary={task.name} />
+      <ListItemText
+        primary={task.name}
+        secondary={task.done ? 'Done' : 'Undone'}
+      />
       <Button
         variant="outlined"
         color="secondary"
