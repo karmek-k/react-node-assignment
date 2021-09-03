@@ -26,7 +26,11 @@ const TodoList: React.FC = () => {
         To-do List
       </Typography>
       <TaskForm />
-      <TaskContainer tasks={tasks} />
+      {tasks.length > 0 ? (
+        <TaskContainer tasks={tasks} />
+      ) : (
+        <Typography className={classes.textCentered}>No tasks</Typography>
+      )}
     </Paper>
   );
 };
