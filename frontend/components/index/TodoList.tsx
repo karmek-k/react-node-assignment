@@ -3,6 +3,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/styles';
 import TaskContainer from './TaskContainer';
 import { useAppSelector } from '../../hooks/redux';
+import TaskForm from './TaskForm';
 
 const useStyles = makeStyles({
   listContainer: {
@@ -25,6 +26,7 @@ const TodoList: React.FC = () => {
         To-do List
       </Typography>
       <TaskContainer tasks={tasks} />
+      <TaskForm />
     </Paper>
   );
 };
