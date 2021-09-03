@@ -1,14 +1,17 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import TaskPickerOption from '../../enums/TaskPickerOption';
 import { Task, TaskEntry } from '../../interfaces/Task';
 
 type InitialState = {
   lastId: number;
   tasks: Task[];
+  visibility: TaskPickerOption;
 };
 
 const initialState: InitialState = {
   lastId: 0,
-  tasks: []
+  tasks: [],
+  visibility: TaskPickerOption.ALL
 };
 
 export const taskSlice = createSlice({
@@ -36,6 +39,10 @@ export const taskSlice = createSlice({
       }
 
       task.done = !task.done;
+    },
+    setVisibility: (state, action: PayloadAction<TaskPickerOption>) => {
+      console.log('dupa');
+      state.visibility = action.payload;
     }
   }
 });
