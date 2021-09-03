@@ -1,19 +1,29 @@
+import { useEffect, useState } from 'react';
 import TaskPickerOption from '../enums/TaskPickerOption';
+import { Task } from '../interfaces/Task';
 import { useAppSelector } from './redux';
+import useTaskVisibility from './useTaskVisibility';
 
-const useTasks = (option?: TaskPickerOption) => {
-  const tasks = useAppSelector(state => state.task.tasks);
+const useTasks = () => {
+  const allTasks = useAppSelector(state => state.task.tasks);
+  const option = useTaskVisibility();
 
-  switch (option) {
-    case TaskPickerOption.DONE:
-      return tasks.filter(task => task.done);
+  const [tasks, setTasks] = useState<Task[]>([]);
 
-    case TaskPickerOption.UNDONE:
-      return tasks.filter(task => !task.done);
+  useEffect(() => {
+    switch (option) {
+      case TaskPickerOption.DONE:
+        setTasks(allTasks.filter(task => task.done));
 
-    default:
-      return tasks;
-  }
+      case TaskPickerOption.UNDONE:
+        setTasks(allTasks.filter(task => !task.done));
+
+      default:
+        setTasks(allTasks);
+    }
+  }, [option, allTasks]);
+
+  return tasks;
 };
 
 export default useTasks;

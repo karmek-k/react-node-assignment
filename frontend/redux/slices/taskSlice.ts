@@ -41,7 +41,6 @@ export const taskSlice = createSlice({
       task.done = !task.done;
     },
     setVisibility: (state, action: PayloadAction<TaskPickerOption>) => {
-      console.log('dupa');
       state.visibility = action.payload;
     }
   }
