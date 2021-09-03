@@ -8,8 +8,8 @@ interface Props {
 }
 
 const TaskContainer: React.FC<Props> = ({ tasks }) => {
-  const taskComponents = tasks.map((task, i) => {
-    return <TaskComponent task={task} key={i} />;
+  const taskComponents = tasks.map(task => {
+    return <TaskComponent task={task} key={task.id} />;
   });
 
   return <List>{taskComponents}</List>;
