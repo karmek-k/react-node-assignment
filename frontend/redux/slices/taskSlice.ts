@@ -7,19 +7,8 @@ type InitialState = {
 };
 
 const initialState: InitialState = {
-  lastId: 2,
-  tasks: [
-    {
-      id: 1,
-      name: 'done task',
-      done: true
-    },
-    {
-      id: 2,
-      name: 'undone task',
-      done: false
-    }
-  ]
+  lastId: 0,
+  tasks: []
 };
 
 export const taskSlice = createSlice({
