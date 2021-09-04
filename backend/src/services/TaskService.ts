@@ -9,8 +9,11 @@ class TaskService {
     return await Task.findOne(id);
   }
 
-  async add(task: Task) {
-    await Task.save(task);
+  async add(name: string) {
+    const task = new Task();
+    task.name = name;
+
+    return await task.save();
   }
 
   async delete(id: number) {
