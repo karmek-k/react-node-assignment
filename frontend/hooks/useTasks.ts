@@ -1,4 +1,5 @@
 import TaskPickerOption from '../enums/TaskPickerOption';
+import { undoneFirst } from '../utils/tasks';
 import { useAppSelector } from './redux';
 
 const useTasks = (visibility?: TaskPickerOption) => {
@@ -12,7 +13,7 @@ const useTasks = (visibility?: TaskPickerOption) => {
       return allTasks.filter(task => !task.done);
 
     default:
-      return allTasks;
+      return undoneFirst(allTasks);
   }
 };
 
