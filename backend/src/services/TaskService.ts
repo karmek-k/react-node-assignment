@@ -1,6 +1,14 @@
 import Task from '../models/Task';
 
 class TaskService {
+  async list() {
+    return await Task.find();
+  }
+
+  async retrieve(id: number) {
+    return await Task.findOne(id);
+  }
+
   async add(task: Task) {
     await Task.save(task);
   }
