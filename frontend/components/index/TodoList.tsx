@@ -20,6 +20,10 @@ const useStyles = makeStyles({
 
 const TodoList: React.FC = () => {
   const classes = useStyles();
+
+  // Why useTaskVisibility:
+  // I thought that I was supposed to make a radio button group
+  // that would display {all, done, undone} tasks
   const tasks = useTasks(useTaskVisibility());
 
   return (
@@ -28,7 +32,13 @@ const TodoList: React.FC = () => {
         To-do List
       </Typography>
       <TaskForm />
-      <TaskPicker />
+
+      {/* 
+        I've kinda misunderstood the last point,
+        but I don't really want to delete this component.
+      */}
+      {/* <TaskPicker /> */}
+
       {tasks.length > 0 ? (
         <TaskContainer tasks={tasks} />
       ) : (
