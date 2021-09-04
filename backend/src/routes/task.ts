@@ -9,4 +9,15 @@ router.get('/', async (req, res) => {
   return res.send({ tasks });
 });
 
+router.post('/', async (req, res) => {
+  const { name } = req.body;
+
+  const task = new Task();
+  task.name = name;
+
+  await task.save();
+
+  return res.status(201).send({ task });
+});
+
 export default router;
