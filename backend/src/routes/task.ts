@@ -1,12 +1,11 @@
 import { Router } from 'express';
-import Task from '../models/Task';
-import TaskService from '../services/TaskService';
+import taskService from '../services/TaskService';
 
 const router = Router();
 
 router.get('/', async (req, res) => {
   return res.send({
-    tasks: await TaskService.list()
+    tasks: await taskService.list()
   });
 });
 
@@ -14,7 +13,7 @@ router.post('/', async (req, res) => {
   const { name } = req.body;
 
   return res.status(201).send({
-    task: await TaskService.add(name)
+    task: await taskService.add(name)
   });
 });
 
@@ -23,7 +22,7 @@ router.put('/', async (req, res) => {
 
   try {
     return res.send({
-      task: await TaskService.setDone(id, done)
+      task: await taskService.setDone(id, done)
     });
   } catch (e) {
     return res.sendStatus(404);
@@ -32,6 +31,10 @@ router.put('/', async (req, res) => {
 
 router.delete('/', async (req, res) => {
   const { id } = req.body;
+
+  taskService.delete(id);
+
+  return res.sendStatus(204);
 });
 
 export default router;
