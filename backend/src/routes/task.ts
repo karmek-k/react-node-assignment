@@ -21,9 +21,17 @@ router.post('/', async (req, res) => {
 router.put('/', async (req, res) => {
   const { id, done } = req.body;
 
-  return res.send({
-    task: await TaskService.setDone(id, done)
-  });
+  try {
+    return res.send({
+      task: await TaskService.setDone(id, done)
+    });
+  } catch (e) {
+    return res.sendStatus(404);
+  }
+});
+
+router.delete('/', async (req, res) => {
+  const { id } = req.body;
 });
 
 export default router;

@@ -24,11 +24,11 @@ class TaskService {
     const task = await Task.findOne(id);
 
     if (!task) {
-      return;
+      throw new Error('task not found');
     }
 
     task.done = done;
-    task.save();
+    return await task.save();
   }
 }
 
