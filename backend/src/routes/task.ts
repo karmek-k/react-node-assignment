@@ -1,38 +1,29 @@
 import { Router } from 'express';
 import Task from '../models/Task';
+import TaskService from '../services/TaskService';
 
 const router = Router();
 
 router.get('/', async (req, res) => {
-  const tasks = await Task.find();
-
-  return res.send({ tasks });
+  return res.send({
+    tasks: await TaskService.list()
+  });
 });
 
 router.post('/', async (req, res) => {
   const { name } = req.body;
 
-  const task = new Task();
-  task.name = name;
-
-  await task.save();
-
-  return res.status(201).send({ task });
+  return res.status(201).send({
+    task: await TaskService.add(name)
+  });
 });
 
-router.put('/:id', async (req, res) => {
+router.put('/', async (req, res) => {
   const { id, done } = req.body;
 
-  const task = await Task.findOne(id);
-
-  if (!task) {
-    return res.sendStatus(404);
-  }
-
-  task.done = done;
-  await task.save();
-
-  return res.send({ task });
+  return res.send({
+    task: await TaskService.setDone(id, done)
+  });
 });
 
 export default router;
