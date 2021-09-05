@@ -4,7 +4,6 @@ import { makeStyles } from '@material-ui/styles';
 import TaskContainer from './TaskContainer';
 import TaskForm from './TaskForm';
 import useTasks from '../../hooks/useTasks';
-import useTaskVisibility from '../../hooks/useTaskVisibility';
 import usePopulateStore from '../../hooks/usePopulateStore';
 
 const useStyles = makeStyles({
@@ -22,10 +21,7 @@ const TodoList: React.FC = () => {
   const classes = useStyles();
   const loaded = usePopulateStore();
 
-  // Why useTaskVisibility:
-  // I thought that I was supposed to make a radio button group
-  // that would display {all, done, undone} tasks
-  const tasks = useTasks(useTaskVisibility());
+  const tasks = useTasks();
 
   return (
     <Paper className={classes.listContainer}>

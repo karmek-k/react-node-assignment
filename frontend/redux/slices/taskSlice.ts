@@ -1,17 +1,14 @@
 import { createSlice, PayloadAction, current } from '@reduxjs/toolkit';
-import TaskPickerOption from '../../enums/TaskPickerOption';
 import { Task, TaskEntry } from '../../interfaces/Task';
 
 type InitialState = {
   lastId: number;
   tasks: Task[];
-  visibility: TaskPickerOption;
 };
 
 const initialState: InitialState = {
   lastId: 0,
-  tasks: [],
-  visibility: TaskPickerOption.ALL
+  tasks: []
 };
 
 export const taskSlice = createSlice({
@@ -42,9 +39,6 @@ export const taskSlice = createSlice({
 
       const doneTasks = current(state.tasks).filter(task => task.done);
       console.log(doneTasks);
-    },
-    setVisibility: (state, action: PayloadAction<TaskPickerOption>) => {
-      state.visibility = action.payload;
     }
   }
 });
