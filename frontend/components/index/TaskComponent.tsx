@@ -1,7 +1,7 @@
 import { Button, ListItem, ListItemText, Checkbox } from '@material-ui/core';
 import React from 'react';
+import useApiDelete from '../../hooks/api/useApiDelete';
 import useApiToggleDone from '../../hooks/api/useApiToggleDone';
-import useDeleteTask from '../../hooks/useDeleteTask';
 import { Task } from '../../interfaces/Task';
 
 interface Props {
@@ -9,7 +9,7 @@ interface Props {
 }
 
 const TaskComponent: React.FC<Props> = ({ task }) => {
-  const deleteTask = useDeleteTask();
+  const deleteTask = useApiDelete();
   const toggleDone = useApiToggleDone();
 
   const handleDelete = () => {
