@@ -20,7 +20,7 @@ const useStyles = makeStyles({
 
 const TodoList: React.FC = () => {
   const classes = useStyles();
-  const loading = usePopulateStore();
+  const loaded = usePopulateStore();
 
   // Why useTaskVisibility:
   // I thought that I was supposed to make a radio button group
@@ -44,7 +44,7 @@ const TodoList: React.FC = () => {
         <TaskContainer tasks={tasks} />
       ) : (
         <Typography className={classes.textCentered}>
-          {loading ? 'Loading...' : 'No tasks'}
+          {!loaded ? 'Loading...' : 'No tasks'}
         </Typography>
       )}
     </Paper>
