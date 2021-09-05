@@ -25,7 +25,7 @@ const TodoList: React.FC = () => {
 
   return (
     <Paper className={classes.listContainer}>
-      <Typography variant="h3" className={classes.textCentered}>
+      <Typography variant="h3" className={classes.textCentered} color="primary">
         To-do List
       </Typography>
       <TaskForm />
