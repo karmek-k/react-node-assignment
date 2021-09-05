@@ -1,10 +1,10 @@
 import { Button, TextField } from '@material-ui/core';
 import React, { useState } from 'react';
-import useCreateTask from '../../hooks/useCreateTask';
+import useApiCreate from '../../hooks/api/useApiCreate';
 
 const TaskForm: React.FC = () => {
   const [taskName, setTaskName] = useState<string>('');
-  const createTask = useCreateTask();
+  const createTask = useApiCreate();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
