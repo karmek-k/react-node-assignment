@@ -1,35 +1,35 @@
 import {
-  Task,
   TaskCreateResponse,
   TaskDeleteResponse,
+  TaskEntry,
   TaskListResponse,
   TaskSetDoneResponse
 } from '../interfaces/Task';
 import api from '../utils/api';
 
 export const listTasks = async () => {
-  const { data } = await api.get<TaskListResponse>('/tasks');
+  const { data } = await api.get<TaskListResponse>('/task');
 
-  return data;
+  return data.tasks;
 };
 
-export const createTask = async (task: Task) => {
-  const { data } = await api.post<TaskCreateResponse>('/tasks', { task });
+export const createTask = async (task: TaskEntry) => {
+  const { data } = await api.post<TaskCreateResponse>('/task', {
+    name: task.name
+  });
 
-  return data;
+  return data.task;
 };
 
 export const setDoneTask = async (id: number, done: boolean) => {
-  const { data } = await api.put<TaskSetDoneResponse>(`/tasks/${id}`, {
+  const { data } = await api.put<TaskSetDoneResponse>(`/task/${id}`, {
     id,
     done
   });
 
-  return data;
+  return data.task;
 };
 
 export const deleteTask = async (id: number) => {
-  const { data } = await api.delete<TaskDeleteResponse>(`/tasks/${id}`);
-
-  return data;
+  const { data } = await api.delete<TaskDeleteResponse>(`/task/${id}`);
 };

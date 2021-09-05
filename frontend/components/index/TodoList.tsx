@@ -4,8 +4,8 @@ import { makeStyles } from '@material-ui/styles';
 import TaskContainer from './TaskContainer';
 import TaskForm from './TaskForm';
 import useTasks from '../../hooks/useTasks';
-import TaskPicker from './TaskPicker';
 import useTaskVisibility from '../../hooks/useTaskVisibility';
+import usePopulateStore from '../../hooks/usePopulateStore';
 
 const useStyles = makeStyles({
   listContainer: {
@@ -20,6 +20,7 @@ const useStyles = makeStyles({
 
 const TodoList: React.FC = () => {
   const classes = useStyles();
+  const loaded = usePopulateStore();
 
   // Why useTaskVisibility:
   // I thought that I was supposed to make a radio button group
@@ -42,7 +43,9 @@ const TodoList: React.FC = () => {
       {tasks.length > 0 ? (
         <TaskContainer tasks={tasks} />
       ) : (
-        <Typography className={classes.textCentered}>No tasks</Typography>
+        <Typography className={classes.textCentered}>
+          {!loaded ? 'Loading...' : 'No tasks'}
+        </Typography>
       )}
     </Paper>
   );
