@@ -17,8 +17,9 @@ router.post('/', async (req, res) => {
   });
 });
 
-router.put('/', async (req, res) => {
-  const { id, done } = req.body;
+router.put('/:id', async (req, res) => {
+  const { done } = req.body;
+  const id = Number.parseInt(req.params.id);
 
   try {
     return res.send({
@@ -29,8 +30,8 @@ router.put('/', async (req, res) => {
   }
 });
 
-router.delete('/', async (req, res) => {
-  const { id } = req.body;
+router.delete('/:id', async (req, res) => {
+  const id = Number.parseInt(req.params.id);
 
   taskService.delete(id);
 
