@@ -34,12 +34,6 @@ const TodoList: React.FC = () => {
       </Typography>
       <TaskForm />
 
-      {/* 
-        I've kinda misunderstood the last point,
-        but I don't really want to delete this component.
-      */}
-      {/* <TaskPicker /> */}
-
       {tasks.length > 0 ? (
         <TaskContainer tasks={tasks} />
       ) : (
