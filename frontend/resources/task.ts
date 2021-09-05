@@ -1,7 +1,7 @@
 import {
-  Task,
   TaskCreateResponse,
   TaskDeleteResponse,
+  TaskEntry,
   TaskListResponse,
   TaskSetDoneResponse
 } from '../interfaces/Task';
@@ -13,7 +13,7 @@ export const listTasks = async () => {
   return data.tasks;
 };
 
-export const createTask = async (task: Task) => {
+export const createTask = async (task: TaskEntry) => {
   const { data } = await api.post<TaskCreateResponse>('/task', { task });
 
   return data.task;
