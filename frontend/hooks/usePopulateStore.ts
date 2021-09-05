@@ -1,19 +1,18 @@
-import { useEffect, useState } from 'react';
-import { listTasks } from '../resources/task';
 import useCreateTask from './useCreateTask';
+import useApiList from './api/useApiList';
+import { useEffect, useState } from 'react';
 
 const usePopulateStore = () => {
-  const [done, setDone] = useState<boolean>(false);
+  const tasks = useApiList();
   const createTask = useCreateTask();
+  const [done, setDone] = useState<boolean>(false);
 
   useEffect(() => {
-    if (!done) {
-      listTasks().then(tasks => {
-        setDone(true);
-        tasks.forEach(createTask);
-      });
+    if (tasks && !done) {
+      setDone(true);
+      tasks.forEach(createTask);
     }
-  });
+  }, [tasks, createTask, done]);
 
   return done;
 };
