@@ -15,7 +15,7 @@ export interface TaskCreateResponse {
   task: Task;
 }
 
-export interface TaskSetDoneResponse {
+export interface TaskToggleDoneResponse {
   task: Task;
 }
 
