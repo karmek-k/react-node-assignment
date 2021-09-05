@@ -25,6 +25,9 @@ export const taskSlice = createSlice({
         done: false
       });
     },
+    addFromApi: (state, action: PayloadAction<Task>) => {
+      state.tasks.push(action.payload);
+    },
     remove: (state, action: PayloadAction<number>) => {
       state.tasks = state.tasks.filter(task => task.id !== action.payload);
     },

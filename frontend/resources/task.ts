@@ -3,7 +3,7 @@ import {
   TaskDeleteResponse,
   TaskEntry,
   TaskListResponse,
-  TaskSetDoneResponse
+  TaskToggleDoneResponse
 } from '../interfaces/Task';
 import api from '../utils/api';
 
@@ -21,15 +21,14 @@ export const createTask = async (task: TaskEntry) => {
   return data.task;
 };
 
-export const setDoneTask = async (id: number, done: boolean) => {
-  const { data } = await api.put<TaskSetDoneResponse>(`/task/${id}`, {
-    id,
-    done
+export const toggleDoneTask = async (id: number) => {
+  const { data } = await api.put<TaskToggleDoneResponse>(`/task/${id}`, {
+    id
   });
 
   return data.task;
 };
 
 export const deleteTask = async (id: number) => {
-  const { data } = await api.delete<TaskDeleteResponse>(`/task/${id}`);
+  await api.delete<TaskDeleteResponse>(`/task/${id}`);
 };

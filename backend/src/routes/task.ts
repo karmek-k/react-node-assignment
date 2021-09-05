@@ -18,12 +18,11 @@ router.post('/', async (req, res) => {
 });
 
 router.put('/:id', async (req, res) => {
-  const { done } = req.body;
   const id = Number.parseInt(req.params.id);
 
   try {
     return res.send({
-      task: await taskService.setDone(id, done)
+      task: await taskService.toggleDone(id)
     });
   } catch (e) {
     return res.sendStatus(404);

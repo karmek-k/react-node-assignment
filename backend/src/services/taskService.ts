@@ -20,14 +20,14 @@ class TaskService {
     await Task.delete({ id });
   }
 
-  async setDone(id: number, done: boolean) {
+  async toggleDone(id: number) {
     const task = await Task.findOne(id);
 
     if (!task) {
       throw new Error('task not found');
     }
 
-    task.done = done;
+    task.done = !task.done;
     return await task.save();
   }
 }
