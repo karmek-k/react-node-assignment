@@ -1,6 +1,8 @@
-// code from https://nextjs.org/docs/messages/no-page-custom-font
+import React from 'react';
+import { ServerStyleSheets } from '@material-ui/core';
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 
+// code from https://nextjs.org/docs/messages/no-page-custom-font
 class MyDocument extends Document {
   render() {
     return (
@@ -19,5 +21,27 @@ class MyDocument extends Document {
     );
   }
 }
+
+// code from https://github.com/mui-org/material-ui/blob/master/examples/nextjs/pages/_document.js
+MyDocument.getInitialProps = async ctx => {
+  const sheets = new ServerStyleSheets();
+  const originalRenderPage = ctx.renderPage;
+
+  ctx.renderPage = () =>
+    originalRenderPage({
+      // eslint-disable-next-line react/display-name
+      enhanceApp: App => props => sheets.collect(<App {...props} />)
+    });
+
+  const initialProps = await Document.getInitialProps(ctx);
+
+  return {
+    ...initialProps,
+    styles: [
+      ...React.Children.toArray(initialProps.styles),
+      sheets.getStyleElement()
+    ]
+  };
+};
 
 export default MyDocument;
