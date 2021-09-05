@@ -2,7 +2,7 @@ import Task from '../models/Task';
 
 class TaskService {
   async list() {
-    return await Task.find();
+    return await Task.find({ order: { id: 'ASC' } });
   }
 
   async retrieve(id: number) {
