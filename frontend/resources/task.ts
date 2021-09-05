@@ -14,7 +14,9 @@ export const listTasks = async () => {
 };
 
 export const createTask = async (task: TaskEntry) => {
-  const { data } = await api.post<TaskCreateResponse>('/task', { task });
+  const { data } = await api.post<TaskCreateResponse>('/task', {
+    name: task.name
+  });
 
   return data.task;
 };
