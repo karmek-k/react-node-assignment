@@ -1,18 +1,19 @@
-import useCreateTask from './useCreateTask';
 import useApiList from './api/useApiList';
 import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { actions } from '../redux/slices/taskSlice';
 
 const usePopulateStore = () => {
   const tasks = useApiList();
-  const createTask = useCreateTask();
+  const dispatch = useDispatch();
   const [done, setDone] = useState<boolean>(false);
 
   useEffect(() => {
     if (tasks && !done) {
       setDone(true);
-      tasks.forEach(createTask);
+      tasks.forEach(task => dispatch(actions.addFromApi(task)));
     }
-  }, [tasks, createTask, done]);
+  }, [tasks, done, dispatch]);
 
   return done;
 };
