@@ -20,3 +20,7 @@ export interface TaskToggleDoneResponse {
 }
 
 export interface TaskDeleteResponse {}
+
+export interface TaskGenerateResponse {
+  tasks: Task[];
+}
