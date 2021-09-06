@@ -47,9 +47,10 @@ router.post('/generate', async (req, res) => {
   await taskService.deleteAll();
 
   const names = randomService.randomStrings(count);
-  await taskService.addMany(names);
 
-  return res.sendStatus(201);
+  return res.status(201).send({
+    tasks: await taskService.addMany(names)
+  });
 });
 
 export default router;

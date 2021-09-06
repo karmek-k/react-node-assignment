@@ -35,5 +35,9 @@ export const deleteTask = async (id: number) => {
 };
 
 export const generateTasks = async (count: number) => {
-  await api.post<TaskGenerateResponse>('/task/generate', { count });
+  const { data } = await api.post<TaskGenerateResponse>('/task/generate', {
+    count
+  });
+
+  return data.tasks;
 };
