@@ -2,6 +2,7 @@ import {
   TaskCreateResponse,
   TaskDeleteResponse,
   TaskEntry,
+  TaskGenerateResponse,
   TaskListResponse,
   TaskToggleDoneResponse
 } from '../interfaces/Task';
@@ -31,4 +32,8 @@ export const toggleDoneTask = async (id: number) => {
 
 export const deleteTask = async (id: number) => {
   await api.delete<TaskDeleteResponse>(`/task/${id}`);
+};
+
+export const generateTasks = async (count: number) => {
+  await api.post<TaskGenerateResponse>('/task/generate', { count });
 };
