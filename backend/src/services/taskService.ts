@@ -30,6 +30,10 @@ class TaskService {
     task.done = !task.done;
     return await task.save();
   }
+
+  async deleteAll() {
+    await Task.clear();
+  }
 }
 
 export default new TaskService();
