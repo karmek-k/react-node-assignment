@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import randomService from '../services/randomService';
 import taskService from '../services/taskService';
 
 const router = Router();
@@ -35,6 +36,20 @@ router.delete('/:id', async (req, res) => {
   taskService.delete(id);
 
   return res.sendStatus(204);
+});
+
+router.post('/generate', async (req, res) => {
+  const { count } = req.body;
+  if (!count) {
+    return res.sendStatus(400);
+  }
+
+  await taskService.deleteAll();
+
+  const names = randomService.randomStrings(count);
+  await taskService.addMany(names);
+
+  return res.sendStatus(201);
 });
 
 export default router;
