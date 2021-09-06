@@ -8,8 +8,8 @@ import {
 } from '../interfaces/Task';
 import api from '../utils/api';
 
-export const listTasks = async () => {
-  const { data } = await api.get<TaskListResponse>('/task');
+export const listTasks = async (page: number) => {
+  const { data } = await api.get<TaskListResponse>(`/task?page=${page}`);
 
   return data.tasks;
 };
@@ -35,9 +35,7 @@ export const deleteTask = async (id: number) => {
 };
 
 export const generateTasks = async (count: number) => {
-  const { data } = await api.post<TaskGenerateResponse>('/task/generate', {
+  await api.post<TaskGenerateResponse>('/task/generate', {
     count
   });
-
-  return data.tasks;
 };
