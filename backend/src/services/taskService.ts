@@ -34,6 +34,16 @@ class TaskService {
   async deleteAll() {
     await Task.clear();
   }
+
+  async addMany(names: string[]) {
+    const tasks = names.map(name => {
+      const task = new Task();
+      task.name = name;
+      return task;
+    });
+
+    return await Task.save(tasks);
+  }
 }
 
 export default new TaskService();
