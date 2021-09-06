@@ -4,11 +4,13 @@ import { Task, TaskEntry } from '../../interfaces/Task';
 type InitialState = {
   lastId: number;
   tasks: Task[];
+  count: number;
 };
 
 const initialState: InitialState = {
   lastId: 0,
-  tasks: []
+  tasks: [],
+  count: 0
 };
 
 export const taskSlice = createSlice({
@@ -39,6 +41,9 @@ export const taskSlice = createSlice({
 
       const doneTasks = current(state.tasks).filter(task => task.done);
       console.log(doneTasks);
+    },
+    setCount: (state, action: PayloadAction<number>) => {
+      state.count = action.payload;
     }
   }
 });
