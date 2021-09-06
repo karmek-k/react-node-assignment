@@ -1,8 +1,14 @@
 import Task from '../models/Task';
 
 class TaskService {
-  async list() {
-    return await Task.find({ order: { id: 'ASC' } });
+  async list(page: number = 1, itemsPerPage: number = 10) {
+    const skip = Math.max(page - 1, 0) * itemsPerPage;
+
+    return await Task.findAndCount({
+      order: { id: 'ASC' },
+      take: itemsPerPage,
+      skip
+    });
   }
 
   async retrieve(id: number) {

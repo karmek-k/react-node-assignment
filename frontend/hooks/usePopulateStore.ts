@@ -3,8 +3,8 @@ import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { actions } from '../redux/slices/taskSlice';
 
-const usePopulateStore = () => {
-  const tasks = useApiList();
+const usePopulateStore = (page: number = 1) => {
+  const tasks = useApiList(page);
   const dispatch = useDispatch();
   const [done, setDone] = useState<boolean>(false);
 

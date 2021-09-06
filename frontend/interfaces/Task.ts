@@ -9,6 +9,7 @@ export interface Task extends TaskEntry {
 
 export interface TaskListResponse {
   tasks: Task[];
+  count: number;
 }
 
 export interface TaskCreateResponse {
@@ -21,6 +22,4 @@ export interface TaskToggleDoneResponse {
 
 export interface TaskDeleteResponse {}
 
-export interface TaskGenerateResponse {
-  tasks: Task[];
-}
+export interface TaskGenerateResponse {}
