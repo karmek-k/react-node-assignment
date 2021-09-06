@@ -5,8 +5,13 @@ import taskService from '../services/taskService';
 const router = Router();
 
 router.get('/', async (req, res) => {
+  const page = Number.parseInt((req.query.page as string) ?? 1);
+
+  const [tasks, count] = await taskService.list(page);
+
   return res.send({
-    tasks: await taskService.list()
+    tasks,
+    count
   });
 });
 
