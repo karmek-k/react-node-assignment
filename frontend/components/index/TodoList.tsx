@@ -5,6 +5,7 @@ import TaskContainer from './TaskContainer';
 import TaskForm from './TaskForm';
 import useTasks from '../../hooks/useTasks';
 import usePopulateStore from '../../hooks/usePopulateStore';
+import TodoListPagination from './TodoListPagination';
 import usePageCount from '../../hooks/usePageCount';
 
 const useStyles = makeStyles({
@@ -25,7 +26,7 @@ interface Props {
 const TodoList: React.FC<Props> = ({ page }) => {
   const classes = useStyles();
   const loaded = usePopulateStore(page);
-  const pages = usePageCount(10);
+  const pageCount = usePageCount(10);
 
   const tasks = useTasks();
 
@@ -35,6 +36,8 @@ const TodoList: React.FC<Props> = ({ page }) => {
         To-do List
       </Typography>
       <TaskForm />
+
+      <TodoListPagination pageCount={pageCount} page={page} />
 
       {tasks.length > 0 ? (
         <TaskContainer tasks={tasks} />
