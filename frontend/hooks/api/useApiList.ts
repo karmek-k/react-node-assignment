@@ -6,7 +6,7 @@ const useApiList = (page: number) => {
   const [tasks, setTasks] = useState<Task[] | null>(null);
 
   useEffect(() => {
-    listTasks(page).then(setTasks);
+    listTasks(page).then(res => setTasks(res.tasks));
   }, [page]);
 
   return tasks;

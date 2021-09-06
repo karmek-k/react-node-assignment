@@ -11,7 +11,7 @@ import api from '../utils/api';
 export const listTasks = async (page: number) => {
   const { data } = await api.get<TaskListResponse>(`/task?page=${page}`);
 
-  return data.tasks;
+  return data;
 };
 
 export const createTask = async (task: TaskEntry) => {
