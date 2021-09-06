@@ -5,6 +5,7 @@ import TaskContainer from './TaskContainer';
 import TaskForm from './TaskForm';
 import useTasks from '../../hooks/useTasks';
 import usePopulateStore from '../../hooks/usePopulateStore';
+import usePageCount from '../../hooks/usePageCount';
 
 const useStyles = makeStyles({
   listContainer: {
@@ -24,6 +25,7 @@ interface Props {
 const TodoList: React.FC<Props> = ({ page }) => {
   const classes = useStyles();
   const loaded = usePopulateStore(page);
+  const pages = usePageCount(10);
 
   const tasks = useTasks();
 
