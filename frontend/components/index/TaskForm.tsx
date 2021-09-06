@@ -1,6 +1,7 @@
 import { Button, makeStyles, TextField } from '@material-ui/core';
 import React, { useState } from 'react';
 import useApiCreate from '../../hooks/api/useApiCreate';
+import useApiGenerate from '../../hooks/api/useApiGenerate';
 
 const useStyles = makeStyles({
   taskForm: {
@@ -16,6 +17,15 @@ const TaskForm: React.FC = () => {
   const [taskName, setTaskName] = useState<string>('');
   const createTask = useApiCreate();
   const classes = useStyles();
+  const generateTasks = useApiGenerate();
+
+  const generationCount = 3000;
+
+  const handleGenerationClick = () => {
+    if (confirm(`Do you really want to generate ${generationCount} tasks?`)) {
+      generateTasks(generationCount);
+    }
+  };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -46,6 +56,14 @@ const TaskForm: React.FC = () => {
         size="large"
       >
         Add task
+      </Button>
+      <Button
+        className={classes.taskFormItem}
+        variant="outlined"
+        color="primary"
+        onClick={handleGenerationClick}
+      >
+        Generate {generationCount} tasks
       </Button>
     </form>
   );
