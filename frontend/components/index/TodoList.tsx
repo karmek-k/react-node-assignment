@@ -17,9 +17,13 @@ const useStyles = makeStyles({
   }
 });
 
-const TodoList: React.FC = () => {
+interface Props {
+  page: number;
+}
+
+const TodoList: React.FC<Props> = ({ page }) => {
   const classes = useStyles();
-  const loaded = usePopulateStore();
+  const loaded = usePopulateStore(page);
 
   const tasks = useTasks();
 
