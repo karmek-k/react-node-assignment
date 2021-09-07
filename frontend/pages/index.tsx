@@ -26,7 +26,7 @@ const Home: NextPage = ({
 };
 
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
-  return { props: { page: query.page ?? 1 } };
+  return { props: { page: Number.parseInt(query.page as string) || 1 } };
 };
 
 export default Home;
