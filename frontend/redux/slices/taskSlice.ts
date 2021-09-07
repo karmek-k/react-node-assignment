@@ -41,6 +41,8 @@ export const taskSlice = createSlice({
 
       task.done = !task.done;
 
+      // add the task to doneTasks if it's done,
+      // otherwise remove it
       if (task.done) {
         state.doneTasks.push(task);
       } else {
