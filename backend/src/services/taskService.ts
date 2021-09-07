@@ -11,6 +11,10 @@ class TaskService {
     });
   }
 
+  async listDone() {
+    return await Task.find({ where: { done: true } });
+  }
+
   async retrieve(id: number) {
     return await Task.findOne(id);
   }

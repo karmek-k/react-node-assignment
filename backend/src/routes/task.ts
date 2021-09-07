@@ -57,4 +57,8 @@ router.post('/generate', async (req, res) => {
   return res.sendStatus(201);
 });
 
+router.get('/done', async (req, res) => {
+  return res.send({ tasks: await taskService.listDone() });
+});
+
 export default router;
