@@ -5,12 +5,14 @@ type InitialState = {
   lastId: number;
   tasks: Task[];
   count: number;
+  doneTasks: Task[];
 };
 
 const initialState: InitialState = {
   lastId: 0,
   tasks: [],
-  count: 0
+  count: 0,
+  doneTasks: []
 };
 
 export const taskSlice = createSlice({
@@ -39,11 +41,22 @@ export const taskSlice = createSlice({
 
       task.done = !task.done;
 
-      const doneTasks = current(state.tasks).filter(task => task.done);
-      console.log(doneTasks);
+      // add the task to doneTasks if it's done,
+      // otherwise remove it
+      if (task.done) {
+        state.doneTasks.push(task);
+      } else {
+        const indexToRemove = state.doneTasks.indexOf(task);
+        state.doneTasks.splice(indexToRemove, 1);
+      }
+
+      console.log(current(state.doneTasks));
     },
     setCount: (state, action: PayloadAction<number>) => {
       state.count = action.payload;
+    },
+    setDoneTasks: (state, action: PayloadAction<Task[]>) => {
+      state.doneTasks = action.payload;
     }
   }
 });
