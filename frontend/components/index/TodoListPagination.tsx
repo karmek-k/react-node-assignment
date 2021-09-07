@@ -1,5 +1,5 @@
 import React from 'react';
-import Pagination from '@material-ui/lab/Pagination';
+import { Pagination, PaginationItem } from '@material-ui/lab';
 import { makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles({
@@ -22,7 +22,18 @@ const TodoListPagination: React.FC<Props> = ({ page, pageCount }) => {
   }
 
   return (
-    <Pagination count={pageCount} page={page} className={classes.centered} />
+    <Pagination
+      count={pageCount}
+      page={page}
+      className={classes.centered}
+      renderItem={item => {
+        return (
+          <a href={item.page ? `/?page=${item.page}` : '#'}>
+            <PaginationItem {...item} />
+          </a>
+        );
+      }}
+    />
   );
 };
 
