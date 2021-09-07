@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_DB: todo_assignment
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U postgres']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build: ./backend
+    environment:
+      DATABASE_URL: postgres://postgres:password@db:5432/todo_assignment
+      PORT: '8000'
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - '8000:8000'
